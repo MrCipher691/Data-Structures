@@ -20,25 +20,50 @@ class List:public Node {
 };
 
 void List::create() {
-    cout<<"Case 1"<<endl;
+    Node *nextNode = new Node();
+    cout<<"Enter Data: ";
+    cin>>nextNode->data;
+    nextNode->next = NULL;
+    if(listptr == NULL) {
+        listptr = nextNode;
+        temp = nextNode;
+    }
+    else {
+        temp->next=nextNode;
+        temp = nextNode;
+    }
 }
 
 void List::display() {
-    cout<<"Case 2"<<endl;
+    cout<<"THE LIGHT"<<endl;
+    if (listptr == NULL)
+        cout<<"Lmao Nothing Here";
+    else {
+        temp = listptr;
+        while (temp != NULL) {
+            cout<<temp->data<<endl;
+            temp = temp->next;
+        }
+    }
 }
 
 int main () {
-    int con, ch;
-    List LL;
+    int con, ch, cnt;
+    List ll;
     do {
-        cout<<"Enter Choice:\n1 - Create\n2 - Display\nHere: ";
+        cout<<"Enter Choice:\n1 - Create | 2 - Display\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
-                LL.create();
+                cout<<"Enter no. of nodes: ";
+                cin>>cnt;
+                while(cnt != 0) {
+                    ll.create();
+                    cnt--;
+                }
                 break;
             case 2:
-                LL.display();
+                ll.display();
                 break;
         }
         cout<<"Press 1 Continue, Else Press Anything."<<endl;
