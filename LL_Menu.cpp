@@ -97,7 +97,7 @@ int main () {
     int con, ch, cnt;
     List ll;
     do {
-        cout<<"Enter Choice:\n1 - Create\n2 - Display\n3 - Insert at Start\n4 - Insert at Middle\nHere: ";
+        cout<<"Enter Choice:\n1 - Create\n2 - Display\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
@@ -120,6 +120,9 @@ int main () {
                 ll.insertMid();
                 len += 1;
                 break;
+            case 5:
+                ll.create();
+                len += 1;
         }
         cout<<"Press 1 Continue, Else Press Anything."<<endl;
         cin>>con;
