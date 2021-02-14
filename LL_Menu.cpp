@@ -17,6 +17,7 @@ class List:public Node {
     }
     void create();
     void display();
+    void insertBeg();
 };
 
 void List::create() {
@@ -25,25 +26,41 @@ void List::create() {
     cin>>nextNode->data;
     nextNode->next = NULL;
     if(listptr == NULL) {
+        nextNode->next = NULL;
         listptr = nextNode;
         temp = nextNode;
     }
     else {
-        temp->next=nextNode;
+        temp->next = nextNode;
         temp = nextNode;
     }
 }
 
 void List::display() {
-    cout<<"THE LIGHT"<<endl;
+    cout<<"- LINKED LIST DISPLAY -"<<endl;
     if (listptr == NULL)
         cout<<"Lmao Nothing Here";
     else {
-        temp = listptr;
-        while (temp != NULL) {
-            cout<<temp->data<<endl;
-            temp = temp->next;
+        Node *traverser = listptr;
+        while (traverser != NULL) {
+            cout<<traverser->data<<endl;
+            traverser = traverser->next;
         }
+    }
+}
+
+void List::insertBeg() {
+    Node *nextNode = new Node();
+    cout<<"Enter Data: ";
+    cin>>nextNode->data;
+    if(listptr == NULL) {
+        nextNode->next = NULL;
+        listptr = nextNode;
+        temp = nextNode;
+    }
+    else {
+        nextNode->next = listptr;
+        listptr = nextNode;
     }
 }
 
@@ -51,7 +68,7 @@ int main () {
     int con, ch, cnt;
     List ll;
     do {
-        cout<<"Enter Choice:\n1 - Create | 2 - Display\nHere: ";
+        cout<<"Enter Choice:\n1 - Create\n2 - Display\n3 - Insert at Start\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
@@ -64,6 +81,9 @@ int main () {
                 break;
             case 2:
                 ll.display();
+                break;
+            case 3:
+                ll.insertBeg();
                 break;
         }
         cout<<"Press 1 Continue, Else Press Anything."<<endl;
