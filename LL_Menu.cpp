@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+int len = 0;
+
 class Node {
     public:
         int data;
@@ -18,6 +20,7 @@ class List:public Node {
     void create();
     void display();
     void insertBeg();
+    void insertMid();
 };
 
 void List::create() {
@@ -43,10 +46,12 @@ void List::display() {
     else {
         Node *traverser = listptr;
         while (traverser != NULL) {
-            cout<<traverser->data<<endl;
+            cout<<traverser->data<<" -> ";
             traverser = traverser->next;
         }
+        cout<<endl;
     }
+    cout<<"Number of elements in linked list is "<<len<<endl;
 }
 
 void List::insertBeg() {
@@ -64,16 +69,41 @@ void List::insertBeg() {
     }
 }
 
+void List::insertMid() {
+    Node *nextNode = new Node();
+    cout<<"Enter Data: ";
+    cin>>nextNode->data;
+    if(listptr == NULL) {
+        nextNode->next = NULL;
+        listptr = nextNode;
+        temp = nextNode;
+    }
+    else if (len == 1) {
+        nextNode->next = NULL;
+        temp->next = nextNode;
+        temp = nextNode;
+    }
+    else {
+        int pos = (len/2) + 1;
+        Node *address = listptr;
+        for (int i = 1; i < (pos - 1); i++)
+            address = address->next;
+        nextNode->next = address->next;
+        address->next = nextNode;
+    }
+}
+
 int main () {
     int con, ch, cnt;
     List ll;
     do {
-        cout<<"Enter Choice:\n1 - Create\n2 - Display\n3 - Insert at Start\nHere: ";
+        cout<<"Enter Choice:\n1 - Create\n2 - Display\n3 - Insert at Start\n4 - Insert at Middle\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
                 cout<<"Enter no. of nodes: ";
                 cin>>cnt;
+                len += cnt;
                 while(cnt != 0) {
                     ll.create();
                     cnt--;
@@ -84,11 +114,15 @@ int main () {
                 break;
             case 3:
                 ll.insertBeg();
+                len += 1;
+                break;
+            case 4:
+                ll.insertMid();
+                len += 1;
                 break;
         }
         cout<<"Press 1 Continue, Else Press Anything."<<endl;
         cin>>con;
     } while (con == 1);
-    
     return 0;
 }
