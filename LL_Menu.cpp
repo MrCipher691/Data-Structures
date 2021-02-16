@@ -22,6 +22,7 @@ class List:public Node {
     void insertBeg();
     void insertMid();
     void delBeg();
+    void delMid();
 };
 
 void List::create() {
@@ -97,17 +98,41 @@ void List::insertMid() {
 void List::delBeg() {
     if (listptr == NULL)
         cout<<"Nothing to Delete"<<endl;
-    else if (len == 1)
+    else if (len == 1) {
         listptr = temp = NULL;
-    else
+        len--;
+    }
+    else {
         listptr = listptr->next;
+        len--;
+    }
+}
+
+void List::delMid() {
+    if (listptr == NULL)
+        cout<<"Nothing to Delete"<<endl;
+    else if (len == 1) {
+        listptr = temp = NULL;
+        len--;
+    }
+    else {
+        int pos = (len/2) + 1;
+        Node *address = listptr;
+        Node *addressNext = listptr;
+        for (int i = 1; i < (pos - 1); i++)
+            address = address->next;
+        for (int i = 1; i < (pos); i++)
+            addressNext = addressNext->next;
+        address->next = addressNext->next;
+        len--;
+    }
 }
 
 int main () {
     int con, ch, cnt;
     List ll;
     do {
-        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\nHere: ";
+        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\n7 - Delete at Middle\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
@@ -136,7 +161,9 @@ int main () {
                 break;
             case 6:
                 ll.delBeg();
-                len -= 1;
+                break;
+            case 7:
+                ll.delMid();
                 break;
             default:
                 cout<<"INVLAID INPUT"<<endl;
