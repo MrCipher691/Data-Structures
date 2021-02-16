@@ -21,6 +21,7 @@ class List:public Node {
     void display();
     void insertBeg();
     void insertMid();
+    void delBeg();
 };
 
 void List::create() {
@@ -42,7 +43,7 @@ void List::create() {
 void List::display() {
     cout<<"- LINKED LIST DISPLAY -"<<endl;
     if (listptr == NULL)
-        cout<<"Lmao Nothing Here";
+        cout<<"List is Empty"<<endl;
     else {
         Node *traverser = listptr;
         while (traverser != NULL) {
@@ -93,14 +94,26 @@ void List::insertMid() {
     }
 }
 
+void List::delBeg() {
+    if (listptr == NULL)
+        cout<<"Nothing to Delete"<<endl;
+    else if (len == 1)
+        listptr = temp = NULL;
+    else
+        listptr = listptr->next;
+}
+
 int main () {
     int con, ch, cnt;
     List ll;
     do {
-        cout<<"Enter Choice:\n1 - Create\n2 - Display\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\nHere: ";
+        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
+                ll.display();
+                break;
+            case 2:
                 cout<<"Enter no. of nodes: ";
                 cin>>cnt;
                 len += cnt;
@@ -108,9 +121,6 @@ int main () {
                     ll.create();
                     cnt--;
                 }
-                break;
-            case 2:
-                ll.display();
                 break;
             case 3:
                 ll.insertBeg();
@@ -123,6 +133,14 @@ int main () {
             case 5:
                 ll.create();
                 len += 1;
+                break;
+            case 6:
+                ll.delBeg();
+                len -= 1;
+                break;
+            default:
+                cout<<"INVLAID INPUT"<<endl;
+                break;
         }
         cout<<"Press 1 Continue, Else Press Anything."<<endl;
         cin>>con;
