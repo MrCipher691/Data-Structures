@@ -23,6 +23,7 @@ class List:public Node {
     void insertMid();
     void delBeg();
     void delMid();
+    void delEnd();
 };
 
 void List::create() {
@@ -128,11 +129,28 @@ void List::delMid() {
     }
 }
 
+void List::delEnd() {
+    if (listptr == NULL)
+        cout<<"Nothing to Delete"<<endl;
+    else if (len == 1) {
+        listptr = temp = NULL;
+        len--;
+    }
+    else {
+        Node *address = listptr;
+        for (int i = 1; i < (len - 1); i++)
+            address = address->next;
+        temp = address;
+        temp->next = NULL;
+        len--;
+    }
+}
+
 int main () {
     int con, ch, cnt;
     List ll;
     do {
-        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\n7 - Delete at Middle\nHere: ";
+        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\n7 - Delete at Middle\n8 - Delete at End\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
@@ -164,6 +182,9 @@ int main () {
                 break;
             case 7:
                 ll.delMid();
+                break;
+            case 8:
+                ll.delEnd();
                 break;
             default:
                 cout<<"INVLAID INPUT"<<endl;
