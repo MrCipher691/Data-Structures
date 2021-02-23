@@ -11,8 +11,8 @@ class Node {
 };
 
 class List:public Node {
-    Node *listptr, *temp;
     public:
+    Node *listptr, *temp;
     List() {
         listptr = NULL;
         temp = NULL;
@@ -24,6 +24,7 @@ class List:public Node {
     void delBeg();
     void delMid();
     void delEnd();
+    void concat(List ll2);
 };
 
 void List::create() {
@@ -146,11 +147,16 @@ void List::delEnd() {
     }
 }
 
+void List::concat(List ll2) {
+    temp->next = ll2.listptr;
+    temp = ll2.temp;
+}
+
 int main () {
     int con, ch, cnt;
-    List ll;
+    List ll, ll2;
     do {
-        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\n7 - Delete at Middle\n8 - Delete at End\nHere: ";
+        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\n7 - Delete at Middle\n8 - Delete at End\n9 - Linked List Concatenation\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
@@ -185,6 +191,19 @@ int main () {
                 break;
             case 8:
                 ll.delEnd();
+                break;
+            case 9:
+                int temp;
+                cout<<"Enter no. of elements in 2nd list: ";
+                cin>>temp;
+                len += temp;
+                while(temp != 0) {
+                    ll2.create();
+                    temp--;
+                }
+                ll.concat(ll2);
+                cout<<"| -- LIST AFTER CPNCATENATION -- |"<<endl;
+                ll.display();
                 break;
             default:
                 cout<<"INVLAID INPUT"<<endl;
