@@ -17,15 +17,31 @@ class List:public Node {
         listptr = NULL;
         temp = NULL;
     }
-    void create();
     void display();
+    void create();
     void insertBeg();
     void insertMid();
     void delBeg();
     void delMid();
     void delEnd();
+    void reverse();
     void concat(List ll2);
 };
+
+void List::display() {
+    cout<<"- LINKED LIST DISPLAY -"<<endl;
+    if (listptr == NULL)
+        cout<<"List is Empty"<<endl;
+    else {
+        Node *traverser = listptr;
+        while (traverser != NULL) {
+            cout<<traverser->data<<" -> ";
+            traverser = traverser->next;
+        }
+        cout<<endl;
+    }
+    cout<<"Number of elements in linked list is "<<len<<endl;
+}
 
 void List::create() {
     Node *nextNode = new Node();
@@ -41,21 +57,6 @@ void List::create() {
         temp->next = nextNode;
         temp = nextNode;
     }
-}
-
-void List::display() {
-    cout<<"- LINKED LIST DISPLAY -"<<endl;
-    if (listptr == NULL)
-        cout<<"List is Empty"<<endl;
-    else {
-        Node *traverser = listptr;
-        while (traverser != NULL) {
-            cout<<traverser->data<<" -> ";
-            traverser = traverser->next;
-        }
-        cout<<endl;
-    }
-    cout<<"Number of elements in linked list is "<<len<<endl;
 }
 
 void List::insertBeg() {
@@ -147,6 +148,19 @@ void List::delEnd() {
     }
 }
 
+void List::reverse() {
+    Node *forward, *curr, *back;
+    curr = listptr;
+    back = NULL;
+    while(curr!=NULL) {
+      forward = curr->next;
+      curr->next = back;
+      back = curr;
+      curr = forward;
+    }
+    listptr = back;
+}
+
 void List::concat(List ll2) {
     temp->next = ll2.listptr;
     temp = ll2.temp;
@@ -156,7 +170,7 @@ int main () {
     int con, ch, cnt;
     List ll, ll2;
     do {
-        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\n7 - Delete at Middle\n8 - Delete at End\n9 - Linked List Concatenation\nHere: ";
+        cout<<"Enter Choice:\n1 - Display\n2 - Create\n3 - Insert at Start\n4 - Insert at Middle\n5 - Insert at End\n6 - Delete at Start\n7 - Delete at Middle\n8 - Delete at End\n9 - Reverse\n10 - Concatenation\nHere: ";
         cin>>ch;
         switch (ch) {
             case 1:
@@ -193,6 +207,9 @@ int main () {
                 ll.delEnd();
                 break;
             case 9:
+                ll.reverse();
+                break;
+            case 10:
                 int temp;
                 cout<<"Enter no. of elements in 2nd list: ";
                 cin>>temp;
