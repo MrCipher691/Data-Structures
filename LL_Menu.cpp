@@ -40,7 +40,7 @@ void List::display() {
         }
         cout<<endl;
     }
-    cout<<"Number of elements in linked list is "<<len<<endl;
+    cout<<"Number of Elements in Linked List are "<<len<<endl;
 }
 
 void List::create() {
@@ -102,11 +102,15 @@ void List::delBeg() {
     if (listptr == NULL)
         cout<<"Nothing to Delete"<<endl;
     else if (len == 1) {
+        free(temp);
         listptr = temp = NULL;
         len--;
     }
     else {
+        Node *tbd;
+        tbd = listptr;
         listptr = listptr->next;
+        free(tbd);
         len--;
     }
 }
@@ -115,6 +119,7 @@ void List::delMid() {
     if (listptr == NULL)
         cout<<"Nothing to Delete"<<endl;
     else if (len == 1) {
+        free(temp);
         listptr = temp = NULL;
         len--;
     }
@@ -127,6 +132,7 @@ void List::delMid() {
         for (int i = 1; i < (pos); i++)
             addressNext = addressNext->next;
         address->next = addressNext->next;
+        free(addressNext);
         len--;
     }
 }
@@ -135,6 +141,7 @@ void List::delEnd() {
     if (listptr == NULL)
         cout<<"Nothing to Delete"<<endl;
     else if (len == 1) {
+        free(temp);
         listptr = temp = NULL;
         len--;
     }
@@ -179,35 +186,47 @@ int main () {
             case 2:
                 cout<<"Enter no. of nodes: ";
                 cin>>cnt;
-                len += cnt;
-                while(cnt != 0) {
-                    ll.create();
-                    cnt--;
+                if (cnt <= 0)
+                    cout<<"Please Enter a Positive Non Zero Integer"<<endl;
+                else {
+                    len += cnt;
+                    while(cnt != 0) {
+                        ll.create();
+                        cnt--;
+                    }
+                    ll.display();
                 }
                 break;
             case 3:
                 ll.insertBeg();
                 len += 1;
+                ll.display();
                 break;
             case 4:
                 ll.insertMid();
                 len += 1;
+                ll.display();
                 break;
             case 5:
                 ll.create();
                 len += 1;
+                ll.display();
                 break;
             case 6:
                 ll.delBeg();
+                ll.display();
                 break;
             case 7:
                 ll.delMid();
+                ll.display();
                 break;
             case 8:
                 ll.delEnd();
+                ll.display();
                 break;
             case 9:
                 ll.reverse();
+                ll.display();
                 break;
             case 10:
                 int temp;
@@ -219,14 +238,14 @@ int main () {
                     temp--;
                 }
                 ll.concat(ll2);
-                cout<<"| -- LIST AFTER CPNCATENATION -- |"<<endl;
+                cout<<"| -- LIST AFTER CONCATENATION -- |"<<endl;
                 ll.display();
                 break;
             default:
                 cout<<"INVLAID INPUT"<<endl;
                 break;
         }
-        cout<<"Press 1 Continue, Else Press Anything."<<endl;
+        cout<<"Press 1 Continue, Else Press Anything: ";
         cin>>con;
     } while (con == 1);
     return 0;
