@@ -10,6 +10,6 @@ A menu driven program to perform basic linked lists commands like: display list,
 
 A menu driven program to perform basic doubly linked lists commands like: display list, create list, insert at start, middle, end, delete at start, middle, end, reverse list and concatinate lists.
 
-## Circular - CLL.cpp
+## Circular Linked List - CLL.cpp
 
 A menu driven program to perform basic circular linked lists commands like: display list, create list, insert at start, middle, end, delete at start, middle, end, reverse list and concatinate lists.
