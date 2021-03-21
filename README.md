@@ -13,3 +13,7 @@ A menu driven program to perform basic doubly linked lists commands like: displa
 ## Circular Linked List - CLL.cpp
 
 A menu driven program to perform basic circular linked lists commands like: display list, create list, insert at start, middle, end, delete at start, middle, end, reverse list and concatinate lists.
+
+## Trees - Tree.cpp
+
+A menu driven program to create a binary tree and has features to perform recursive & non-recursive tree traversals: in-order, pre-order & post-order.
