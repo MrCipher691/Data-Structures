@@ -16,4 +16,8 @@ A menu driven program to perform basic circular linked lists commands like: disp
 
 ## Trees - Tree.cpp
 
-A menu driven program to create a binary tree and has features to perform recursive & non-recursive tree traversals: in-order, pre-order & post-order.
+A menu driven program to create a binary tree and has features to perform recursive & iterative tree traversals: in-order, pre-order & post-order.
+
+## Binary Search Tree - BSTree.cpp
+
+A menu driven program to create a simple binary search tree and basic implementation features such as creating list/nodes, searhcing nodes, delete nodes, in-order traversal, etc.
