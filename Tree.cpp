@@ -37,7 +37,6 @@ class binary_tree {
         void preOrderIterative(node *head);
         void inOrderIterative(node *head);
         void postOrderIterative(node *head);
-
         void print2DUtil(node *root, int space);
         void print2D(node *root);
 };
@@ -71,7 +70,11 @@ void binary_tree::addNode() {
 }
 
 void binary_tree::preOrder(node *t) {
-    if (t == NULL)
+    if (root == NULL) {
+        cout<<"! - TREE IS EMPTY - !"<<endl;
+        return;
+    }
+    else if (t == NULL)
         return;
     cout<<t->data<<"  ";
     preOrder(t->left);
@@ -79,7 +82,11 @@ void binary_tree::preOrder(node *t) {
 }
 
 void binary_tree::inOrder(node *t) {
-    if (t == NULL)
+    if (root == NULL) {
+        cout<<"! - TREE IS EMPTY - !"<<endl;
+        return;
+    }
+    else if (t == NULL)
         return;
     inOrder(t->left);
     cout<<t->data<<"  ";
@@ -87,7 +94,11 @@ void binary_tree::inOrder(node *t) {
 }
 
 void binary_tree::postOrder(node *t) {
-    if (t == NULL)
+    if (root == NULL) {
+        cout<<"! - TREE IS EMPTY - !"<<endl;
+        return;
+    }
+    else if (t == NULL)
         return;
     postOrder(t->left);
     postOrder(t->right);
@@ -95,7 +106,11 @@ void binary_tree::postOrder(node *t) {
 }
 
 void binary_tree::preOrderIterative(node *head) {
-    if (head == NULL)
+    if (root == NULL) {
+        cout<<"! - TREE IS EMPTY - !"<<endl;
+        return;
+    }
+    else if (head == NULL)
         return;
     stack<node *> s;
     s.push(head);
@@ -111,6 +126,11 @@ void binary_tree::preOrderIterative(node *head) {
 }
 
 void binary_tree::inOrderIterative(node *head) {
+    if (root == NULL) {
+        cout<<"! - TREE IS EMPTY - !"<<endl;
+        return;
+    }
+
     node *temp = head;
     stack<node *> s;
     while (true) {
@@ -128,7 +148,11 @@ void binary_tree::inOrderIterative(node *head) {
 }
 
 void binary_tree::postOrderIterative(node *head) {
-    if (head == NULL)
+    if (root == NULL) {
+        cout<<"! - TREE IS EMPTY - !"<<endl;
+        return;
+    }
+    else if (head == NULL)
         return;
     
     stack<node *> s1, s2;
@@ -181,7 +205,7 @@ int main() {
     int con = 1;
     do {
         int ch;
-        cout<<"| -------------- MENU -------------- |"<<endl;
+        cout<<endl<<"| -------------- MENU -------------- |"<<endl;
         cout<<"1 - Create Tree"<<endl;
         cout<<"2 - Pre-Order Traversal Recursive"<<endl;
         cout<<"3 - In-Order Traversal Recursive"<<endl;
@@ -189,7 +213,7 @@ int main() {
         cout<<"5 - Pre-Order Traversal Iterative"<<endl;
         cout<<"6 - In-Order Traversal Iterative"<<endl;
         cout<<"7 - Post-Order Traversal Iterative"<<endl;
-        cout<<"8 - Display"<<endl;
+        cout<<"8 - TERMINATE PROGRAM"<<endl;
         cout<<"Enter Choice: ";
         cin>>ch;
 
@@ -222,14 +246,25 @@ int main() {
                 tree.postOrderIterative(tree.root);
                 break;
             case 8:
-                tree.print2D(tree.root);
+                con = 0;
                 break;
             default:
-                cout << "DEFAULT CASE" << endl;
+                cout<<endl<<"| ---------- QUICK REPORT ---------- |"<<endl;
+                tree.print2D(tree.root);
+                cout<<endl<<"PRE-ORDER RECURSIVE:\t";
+                tree.preOrder(tree.root);
+                cout<<endl<<"IN-ORDER RECURSIVE:\t";
+                tree.inOrder(tree.root);
+                cout<<endl<<"POST-ORDER RECURSIVE:\t";
+                tree.postOrder(tree.root);
+                cout<<endl<<"PRE-ORDER ITERATIVE:\t";
+                tree.preOrderIterative(tree.root);
+                cout<<endl<<"IN-ORDER ITERATIVE:\t";
+                tree.inOrderIterative(tree.root);
+                cout<<endl<<"POST-ORDER ITERATIVE:\t";
+                tree.postOrderIterative(tree.root);
                 break;
         }
-        cout << "\nPress 1 Continue, Else Press Anything: ";
-        cin >> con;
     } while (con == 1);
     return 0;
 }
