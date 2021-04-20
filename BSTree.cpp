@@ -200,9 +200,11 @@ int main() {
             case 3: {
                 cout<<"Enter Node: ";
                 cin >> data;
-                node *del = tree.delete_node(tree.root, data);
-                if (del != NULL)
+                node *search = tree.search(tree.root, data);
+                if (search != NULL) {
+                    node *del = tree.delete_node(tree.root, data);
                     cout<<"Node with data "<<data<<" deleted"<<endl;
+                    }
                 else
                     cout<<"! - NODE DOES NOT EXISTS - !"<<endl;
                 break;
