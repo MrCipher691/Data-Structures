@@ -21,3 +21,19 @@ A menu driven program to create a binary tree and has features to perform recurs
 ## Binary Search Tree - BSTree.cpp
 
 A menu driven program to create a simple binary search tree and basic implementation features such as creating list/nodes, searhcing nodes, delete nodes, in-order traversal, etc.
+
+## Depth First Search - DFS.cpp
+
+A menu driven program to create a simple graph and implementation of depth first search alogrithm on it and to display the output.
+
+## Prim's Alogrithm - Prims_Algo.cpp
+
+A menu driven program to create a simple graph and implementation of Prim's alogrithm on it to to find the minimum cost path of a spanning tree and display the output.
+
+## File Organistaion: Direct Access - Direct.c
+
+A program to create a simple database from user and save it in a file, and then implement direct access method to fetch the contents of the file.
+
+## File Organistaion: Sequential Access - Sequential.c
+
+A program to create a simple database from user and save it in a file, and then implement sequential access method to fetch the contents of the file.
